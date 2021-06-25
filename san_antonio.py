@@ -15,6 +15,11 @@ characters = [
     "Kirikou"
 ]
 
+def message(character, quote):
+    n_character = character.capitalize()
+    n_quote = quote.capitalize()
+    return "{} a dit : {}".format(n_character, n_quote)
+
 def get_random_quote():
     # get a random number
     # get a quote from an array
@@ -24,17 +29,11 @@ def get_random_quote():
 def get_random_item_in(my_list):
     # TODO: get a random number
     item = my_list[0] # get a quote from a list
-    print(item) # show the quote in the interpreter
-    return "program is over" # returned value
+    return item # return the item
 
-get_random_quote()
-print(get_random_item_in(quotes))
+# Programm
+user_answer = input('Tapez entrée pour connaître une autre citation ou B pour quitter le programme.')
 
-user_answer = input('Tapez entrée pour découvrir une autre citation ou B pour quitter le programme.')
-# if user_answer == "B":
-#     pass
-# elif user_answer == "C":
-#     print("C pas la bonne réponse ! Et G pas d’humour, je C...")
-# else:
-#     # show another quote
-#     pass
+while user_answer != "B":
+    print(message(get_random_item_in(characters), get_random_item_in(quotes)))
+    user_answer = input('Tapez entrée pour connaître une autre citation ou B pour quitter le programme.')
