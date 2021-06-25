@@ -1,79 +1,40 @@
 # -*- coding: utf8 -*-
-
-import json
 import random
 
-# Give a Json file and return a List
-def read_values_from_json(path, key):
-    values = []
-    with open(path) as f:
-        data = json.load(f)
-        for entry in data:
-            values.append(entry[key])
-        return values
+quotes = [
+    "Ecoutez-moi, Monsieur Shakespeare, nous avons beau être ou ne pas être, nous sommes !",
+    "On doit pouvoir choisir entre s'écouter parler et se faire entendre."
+]
 
-# Give a json and return a list
-def clean_strings(sentences):
-    cleaned = []
-    # Store quotes on a list. Create an empty list and add each sentence one by one.
-    for sentence in sentences:
-        # Clean quotes from whitespace and so on
-        clean_sentence = sentence.strip()
-        # don't use extend as it adds each letter one by one!
-        cleaned.append(clean_sentence)
-    return cleaned
+characters = [
+    "alvin et les Chipmunks",
+    "Babar",
+    "betty boop",
+    "calimero",
+    "casper",
+    "le chat potté",
+    "Kirikou"
+]
 
-# Return a random item in a list
-def random_item_in(object_list):
-    rand_numb = random.randint(0, len(object_list) - 1)
-    return object_list[rand_numb]
+def message(character, quote):
+    n_character = character.capitalize()
+    n_quote = quote.capitalize()
+    return "{} a dit : {}".format(n_character, n_quote)
 
-# Return a random value from a json file
-def random_value(source_path, key):
-    all_values = read_values_from_json(source_path, key)
-    clean_values = clean_strings(all_values)
-    return random_item_in(clean_values)
+def get_random_quote():
+    # get a random number
+    # get a quote from an array
+    # show the quote in the interpreter
+    pass
 
+def get_random_item_in(my_list):
+    rand_numb = random.randint(0, len(my_list) - 1)
+    item = my_list[rand_numb] # get a quote from a list
+    return item # return the item
 
+# Programm
+user_answer = input('Tapez entrée pour connaître une autre citation ou B pour quitter le programme.')
 
-###### QUOTES #######
-
-
-# Gather quotes from San Antonio
-
-def random_quote():
-    return random_value('quotes.json', 'quote')
-
-
-#### CHARACTERS ######
-
-
-# Gather characters from Wikipedia
-
-def random_character():
-    return random_value('characters.json', 'character')
-
-
-
-#### INTERACTION ######
-
-
-# Print a random sentence.
-
-def print_random_sentence():
-    rand_quote = random_quote()
-    rand_character = random_character()
-    print(">>>> {} a dit : {}".format(rand_character, rand_quote))
-
-def main_loop():
-    while True:
-        print_random_sentence()
-        message = ('Voulez-vous voir une autre citation ?'
-                   'Pour sortir du programme, tapez [B].')
-        choice = input(message).upper()
-        if choice == 'B':
-            break
-            # This will stop the loop!
-
-if __name__ == '__main__':
-    main_loop()
+while user_answer != "B":
+    print(message(get_random_item_in(characters), get_random_item_in(quotes)))
+    user_answer = input('Tapez entrée pour connaître une autre citation ou B pour quitter le programme.')
